@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class Student implements Comparable<Student>{
 
     private int id;
@@ -38,6 +40,10 @@ public class Student implements Comparable<Student>{
             else
                 return 0;
         }
+//        return Comparator.comparingDouble(Student::getCgpa)
+//                .thenComparing(Student::getName)
+//                .thenComparingInt(Student::getId)
+//                .compare(this, o);
     }
 
     @Override

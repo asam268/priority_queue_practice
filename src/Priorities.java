@@ -57,10 +57,9 @@ student, then the code prints EMPTY.
  */
 public class Priorities {
 
-    private final String ENTER = "ENTER";
-    private final String SERVED = "SERVED";
 
-    public Priorities(){
+
+    private Priorities() {
         List<String> e = new ArrayList<>();
         e.add("12");
         e.add("ENTER John 3.75 50");
@@ -78,36 +77,31 @@ public class Priorities {
         List<Student> students = getStudents(e);
         System.out.println(students);
     }
-    public List<Student> getStudents(List<String> events){
+
+    private List<Student> getStudents(List<String> events) {
+        final String ENTER = "ENTER";
+        final String SERVED = "SERVED";
         PriorityQueue<Student> q = new PriorityQueue<>();
-        int id;//, count = Integer.parseInt(events.get(0));
+        int id;
         double cgpa;
         String name;
         Scanner sr;
-        for(String s : events){
+        for (String s : events) {
             sr = new Scanner(s);
             String action = sr.next();
-//            System.out.println(action);
-            if(action.equals(ENTER)){
+            if (action.equals(ENTER)) {
                 name = sr.next();
-//                System.out.println(name);
                 cgpa = sr.nextDouble();
-//                System.out.println(cgpa);
                 id = sr.nextInt();
-//                System.out.println(id);
                 q.add(new Student(id, name, cgpa));
-                //sr.nextLine();
-            }
-            else if(action.equals(SERVED)){
+            } else if (action.equals(SERVED))
                 q.poll();
-                //sr.nextLine();
-            }
-//            System.out.println("==Iteration " + i + "==");
-//            System.out.println(q);
-//            System.out.println();
             sr.close();
         }
-        return new ArrayList<>(q);
+        List<Student> toReturn = new ArrayList<>();
+        while (!q.isEmpty())
+            toReturn.add(q.poll());
+        return toReturn;
     }
 
     public static void main(String[] args) {
