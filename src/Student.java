@@ -24,17 +24,19 @@ public class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student o) {
-        if(this.cgpa == o.cgpa){
-            if(this.name.equalsIgnoreCase(o.name))
-                return this.id - o.id;
+        if(this.cgpa > o.cgpa)
+            return -1;
+        else if(this.cgpa < o.cgpa)
+            return 1;
+        else {
+            if (this.cgpa == o.cgpa) {
+                if (this.name.equalsIgnoreCase(o.name))
+                    return this.id - o.id;
+                else
+                    return this.name.compareTo(o.name);
+            }
             else
-                return this.name.compareTo(o.name);
-        }
-        else{
-            if(this.cgpa > o.cgpa)
-                return -1;
-            else
-                return 1;
+                return 0;
         }
     }
 
